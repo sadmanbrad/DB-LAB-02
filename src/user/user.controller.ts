@@ -1,27 +1,36 @@
-import { Body, Controller, Get, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 import CreateUserDto from './dto/create-user.dto';
+import { ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery } from '@nestjs/swagger';
 
 @Controller('users')
 export class UserController {
     constructor(private readonly usersService: UserService) { }
 
-    //'postUser()' will handle the creating of new User
+    @ApiOperation({ description: 'Creates a new user' })
+    @ApiCreatedResponse({ description: 'User created successfully' })
     @Post()
     postUser(@Body() user: CreateUserDto) {
         return this.usersService.insert(user);
     }
 
-    // 'getAll()' returns the list of all the existing users in the database
+    @ApiOperation({ description: 'Retrieves the list of all existing users' })
+    @ApiOkResponse({ description: 'Users retrieved successfully' })
     @Get()
     getAll() {
         return this.usersService.getAllUsers();
     }
 
-    //'getBooks()' return all the books which are associated with the user 
-    // provided through 'userID' by the request  
-    @Get('books')
-    getBooks(@Body('userID', ParseIntPipe) userID: number) {
+    @ApiOperation({ description: 'Retrieves all books which are associated with the user' })
+    @ApiOkResponse({ description: 'User books retrieved successfully' })
+    @ApiNotFoundResponse({ description: 'User not found' })
+    @ApiParam({
+        name: 'userID',
+        description: 'ID of the user whose books is requested',
+        schema: { type: 'integer', example: 1 }
+    })
+    @Get(':userID/books')
+    getBooks(@Param('userID', ParseIntPipe) userID: number) {
         return this.usersService.getBooksOfUser(userID);
     }
 }
