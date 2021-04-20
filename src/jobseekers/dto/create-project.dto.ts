@@ -30,5 +30,5 @@ export default class CreateProjectDto {
         description: 'List of skills that are related to this project',
         type: 'array', items: { type: 'string' }
     })
-    readonly relatedSkills: number[];
+    readonly relatedSkills: string[];
 }

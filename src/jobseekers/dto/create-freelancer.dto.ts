@@ -15,5 +15,5 @@ export default class CreateFreelancerDto {
         description: 'List of skills',
         type: 'array', items: { type: 'string' }
     })
-    readonly skills: number[];
+    readonly skills: string[];
 }

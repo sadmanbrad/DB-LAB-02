@@ -16,6 +16,9 @@ export default class ProjectEntity extends BaseEntity {
     @Column({ length: 500 })
     description: string;
 
+    @Column()
+    budget: number;
+
     @ManyToOne(type => EmployerEntity, employer => employer.projects)
     employer: EmployerEntity;
 
