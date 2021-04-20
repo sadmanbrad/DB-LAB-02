@@ -140,7 +140,7 @@ export class JobseekersService {
         return freelancer;
     }
 
-    async deleteProfile(freelancerID: number) {
+    async deleteFreelancer(freelancerID: number) {
         FreelancerEntity.delete(freelancerID);
     }
 
