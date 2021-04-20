@@ -22,8 +22,13 @@ export default class CreateProjectDto {
     readonly details: string;
 
     @ApiProperty({
-        description: 'List of skill ids that are related to this project',
-        type: 'array', items: { type: 'integer' }
+        description: 'Project budget', example: '1000'
     })
-    readonly relatedSkillIDs: number[];
+    readonly budget: number;
+
+    @ApiProperty({
+        description: 'List of skills that are related to this project',
+        type: 'array', items: { type: 'string' }
+    })
+    readonly relatedSkills: number[];
 }

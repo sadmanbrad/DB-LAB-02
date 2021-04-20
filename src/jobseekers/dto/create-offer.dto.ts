@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export default class ReviewDto {
+export default class CreateOfferDto {
     @ApiProperty({
         description: 'ID of the freelancer creating the offer', example: '1'
     })
