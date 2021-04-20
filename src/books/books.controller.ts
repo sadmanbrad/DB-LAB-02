@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Header, Param, Post, Put } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Header, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { BooksService } from './books.service';
 import CreateBookDto from './dto/create-book.dto';
 
@@ -9,6 +10,8 @@ export default class BooksController {
 
     @ApiOperation({ description: 'Creates a new book' })
     @ApiCreatedResponse({ description: 'Book created successfully' })
+    @ApiBearerAuth()
+    @UseGuards(JwtAuthGuard)
     @Post()
     postBook(@Body() book: CreateBookDto) {
         return this.booksService.insert(book);
@@ -16,6 +19,8 @@ export default class BooksController {
 
     @ApiOperation({ description: 'Retrieves list of all books' })
     @ApiOkResponse({ description: 'Books retrieved successfully' })
+    @ApiBearerAuth()
+    @UseGuards(JwtAuthGuard)
     @Get()
     getAll() {
         return this.booksService.getAllBooks();
@@ -23,6 +28,8 @@ export default class BooksController {
 
     @ApiOperation({ description: 'Updates the details of a book' })
     @ApiOkResponse({ description: 'Book updated successfully' })
+    @ApiBearerAuth()
+    @UseGuards(JwtAuthGuard)
     @Put(':bookID')
     updateBook(@Param('bookID') bookID: number, @Body() book: CreateBookDto) {
         return this.booksService.update(bookID, book);
@@ -30,6 +37,8 @@ export default class BooksController {
 
     @ApiOperation({ description: 'Deletes a book' })
     @ApiOkResponse({ description: 'Book deleted successfully' })
+    @ApiBearerAuth()
+    @UseGuards(JwtAuthGuard)
     @Delete(':bookID')
     deleteBook(@Param('bookID') bookID: number) {
         this.booksService.delete(bookID);

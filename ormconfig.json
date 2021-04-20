@@ -7,6 +7,5 @@
     "database": "dblab-2-bookapp",
     "entities": [
         "dist/**/**.entity{.ts,.js}"
-    ],
-    "synchronize": true
+    ]
 }
