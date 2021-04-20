@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './User/user.module';
 import { AuthModule } from './auth/auth.module';
+import { JobseekersModule } from './jobseekers/jobseekers.module';
 import BooksModule from './Books/books.module';
 import GenreModule from './Genre/genre.module';
 import UserEntity from './db/entity/user.entity';
@@ -21,6 +22,8 @@ import GenreEntity from './db/entity/genre.entity';
         TypeOrmModule.forRoot(),
 
         AuthModule,
+
+        JobseekersModule,
     ],
     controllers: [AppController],
     providers: [AppService],
