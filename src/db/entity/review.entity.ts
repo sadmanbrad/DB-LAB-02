@@ -18,7 +18,7 @@ export default class ReviewEntity extends BaseEntity {
     details: string;
 
     @ManyToOne(type => FreelancerEntity, freelancer => freelancer.reviews)
-    freelancer: EmployerEntity;
+    freelancer: FreelancerEntity;
 
     @ManyToOne(type => EmployerEntity, author => author.reviewsWritten)
     author: EmployerEntity;
