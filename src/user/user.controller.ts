@@ -7,7 +7,7 @@ export class UserController {
     constructor(private readonly usersService: UserService) { }
 
     //'postUser()' will handle the creating of new User
-    @Post('post')
+    @Post()
     postUser(@Body() user: CreateUserDto) {
         return this.usersService.insert(user);
     }
