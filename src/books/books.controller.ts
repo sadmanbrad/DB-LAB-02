@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Header, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Header, Param, Post, Put } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { BooksService } from './books.service';
 import CreateBookDto from './dto/create-book.dto';
@@ -19,5 +19,19 @@ export default class BooksController {
     @Get()
     getAll() {
         return this.booksService.getAllBooks();
+    }
+
+    @ApiOperation({ description: 'Updates the details of a book' })
+    @ApiOkResponse({ description: 'Book updated successfully' })
+    @Put(':bookID')
+    updateBook(@Param('bookID') bookID: number, @Body() book: CreateBookDto) {
+        return this.booksService.update(bookID, book);
+    }
+
+    @ApiOperation({ description: 'Deletes a book' })
+    @ApiOkResponse({ description: 'Book deleted successfully' })
+    @Delete(':bookID')
+    deleteBook(@Param('bookID') bookID: number) {
+        this.booksService.delete(bookID);
     }
 }
