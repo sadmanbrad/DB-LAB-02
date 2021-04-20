@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export default class CreateUserDto {
     @ApiProperty({
-        description: 'The name of the user', default: 'Username'
+        description: 'The name of the user', example: 'Username'
     })
     readonly name: string;
 
