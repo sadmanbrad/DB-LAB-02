@@ -1,6 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm';
-import UserEntity from './user.entity';
-import GenreEntity from './genre.entity';
 import ProjectEntity from './project.entity';
 import ReviewEntity from './review.entity';
 

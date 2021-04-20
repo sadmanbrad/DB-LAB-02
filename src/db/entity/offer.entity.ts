@@ -1,6 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm';
-import UserEntity from './user.entity';
-import GenreEntity from './genre.entity';
 import EmployerEntity from './employer.entity';
 import ProjectEntity from './project.entity';
 import FreelancerEntity from './freelancer.entity';

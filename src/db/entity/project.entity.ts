@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm';
-import UserEntity from './user.entity';
-import GenreEntity from './genre.entity';
+import CategoryEntity from './category.entity';
 import EmployerEntity from './employer.entity';
 import OfferEntity from './offer.entity';
+import SkillEntity from './skill.entity';
 
 @Entity()
 export default class ProjectEntity extends BaseEntity {
@@ -19,6 +19,13 @@ export default class ProjectEntity extends BaseEntity {
     @ManyToOne(type => EmployerEntity, employer => employer.projects)
     employer: EmployerEntity;
 
+    @ManyToOne(type => CategoryEntity)
+    category: CategoryEntity;
+
     @OneToMany(type => OfferEntity, offer => offer.project)
     offers: OfferEntity[];
+
+    @ManyToMany(type => SkillEntity)
+    @JoinTable()
+    relatedSkills: SkillEntity[];
 }
